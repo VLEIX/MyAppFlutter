@@ -5,10 +5,7 @@ class FadeInOut extends StatelessWidget {
   Widget build(BuildContext context) {
     final appTitle = 'Opacity Demo';
 
-    return MaterialApp(
-      title: appTitle,
-      home: MyHomePage(title: appTitle),
-    );
+    return MyHomePage(title: appTitle);
   }
 }
 
