@@ -11,6 +11,9 @@ import 'cookbook/lists/dynamicHeight.dart';
 import 'cookbook/navigation/newScreen.dart';
 import 'cookbook/navigation/newScreenNamedRoute.dart';
 
+import 'cookbook/persistence/readingWritingFiles.dart';
+import 'cookbook/persistence/storingData.dart';
+
 void main() {
   final Content aniCon1 = new Content('Opacity Demo', '/fadeInOut');
   final Topic heaAni = new Topic('Animation', [aniCon1], '/animation');
@@ -23,18 +26,33 @@ void main() {
   final Content lisCon6 = new Content('Dynamic Height', '/dynamicHeight');
   final Topic heaLis = new Topic('Lists', [lisCon1, lisCon2, lisCon3, lisCon4, lisCon5, lisCon6], '/lists');
 
+  final Content perCon1 = new Content('Reading Writing Files', '/readingWritingFiles');
+  final Content perCon2 = new Content('Storing Data', '/storingData');
+  final Topic heaPer = new Topic('Persistence', [perCon1, perCon2], '/persistence');
+
   runApp(MaterialApp(
     title: 'Flutter Cookbook',
     initialRoute: '/',
     routes: {
-      '/': (context) => MyApp(title: 'Flutter Cookbook', topics: [heaAni, heaLis],),
+      '/': (context) => MyApp(title: 'Flutter Cookbook', topics: [heaAni, heaLis, heaPer],),
       '/animation/fadeInOut': (context) => FadeInOut(),
       '/lists/basicList': (context) => BasicList(),
-      '/lists/longList': (context) => LongList(),
+      '/lists/longList': (context) => LongList(
+          items: List<String>.generate(10000, (i) => 'Item $i'
+          )
+      ),
       '/lists/horizontalList': (context) => HorizontalList(),
       '/lists/gridList': (context) => GridList(),
-      '/lists/mixedList': (context) => ListDifferentTypes(),
+      '/lists/mixedList': (context) => ListDifferentTypes(
+          items: List<ListItem>.generate(1000, (i) => i % 6 == 0
+              ? HeadingItem('Heading $i')
+              : MessageItem('Sender $i', 'Message body $i')
+          )
+      ),
       '/lists/dynamicHeight': (context) => DynamicHeightList(),
+
+      '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
+      '/persistence/storingData': (context) => StoringData(),
     },
   ));
 }

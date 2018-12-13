@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ListDifferentTypes extends StatelessWidget {
-  final List<ListItem> items = List<ListItem>.generate(
-      1000,
-          (i) => i % 6 == 0
-          ? HeadingItem('Heading $i')
-          : MessageItem('Sender $i', 'Message body $i')
-  );
+  final List<ListItem> items;
+
+  ListDifferentTypes({Key key, @required this.items}) : super (key: key);
 
   @override
   Widget build(BuildContext context) {

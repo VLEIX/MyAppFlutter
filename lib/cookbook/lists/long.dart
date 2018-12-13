@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LongList extends StatelessWidget {
-  final List<String> items = List<String>.generate(100000, (i) => 'Item $i');
+  final List<String> items;
+
+  LongList({Key key, this.items}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
