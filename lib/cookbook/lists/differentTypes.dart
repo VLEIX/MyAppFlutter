@@ -12,13 +12,11 @@ class ListDifferentTypes extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = 'Mixed List';
 
-    return MaterialApp(
-      title: title,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: ListView.builder(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index];
@@ -37,7 +35,6 @@ class ListDifferentTypes extends StatelessWidget {
               );
             }
           }
-        ),
       ),
     );
   }

@@ -23,27 +23,24 @@ class DynamicHeightList extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = 'Dynamic Height';
 
-    return MaterialApp(
-      title: title,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(title),
         ),
         body: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return Container(
-              child: ListTile(
-                title: Text(items[index]),
-              ),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: 2.0, color: Colors.blueAccent)
-                )
-              ),
-            );
-          })
-      ),
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              return Container(
+                child: ListTile(
+                  title: Text(items[index]),
+                ),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(width: 2.0, color: Colors.blueAccent)
+                    )
+                ),
+              );
+            })
     );
   }
 }

@@ -13,7 +13,7 @@ import 'cookbook/navigation/newScreenNamedRoute.dart';
 
 void main() {
   final Content aniCon1 = new Content('Opacity Demo', '/fadeInOut');
-  final Header heaAni = new Header('Animation', [aniCon1], '/animation');
+  final Topic heaAni = new Topic('Animation', [aniCon1], '/animation');
 
   final Content lisCon1 = new Content('Basic List', '/basicList');
   final Content lisCon2 = new Content('Long List', '/longList');
@@ -21,32 +21,33 @@ void main() {
   final Content lisCon4 = new Content('Grid List', '/gridList');
   final Content lisCon5 = new Content('Mixed List', '/mixedList');
   final Content lisCon6 = new Content('Dynamic Height', '/dynamicHeight');
-  final Header heaLis = new Header('Lists', [lisCon1, lisCon2, lisCon3, lisCon4, lisCon5, lisCon6], '/lists');
-
-  //runApp(MyApp(title: 'Flutter Cookbook', headerList: [heaAni, heaLis],));
+  final Topic heaLis = new Topic('Lists', [lisCon1, lisCon2, lisCon3, lisCon4, lisCon5, lisCon6], '/lists');
 
   runApp(MaterialApp(
     title: 'Flutter Cookbook',
     initialRoute: '/',
     routes: {
-      '/': (context) => MyApp(title: 'Flutter Cookbook', headerList: [heaAni, heaLis],),
+      '/': (context) => MyApp(title: 'Flutter Cookbook', topics: [heaAni, heaLis],),
       '/animation/fadeInOut': (context) => FadeInOut(),
       '/lists/basicList': (context) => BasicList(),
+      '/lists/longList': (context) => LongList(),
+      '/lists/horizontalList': (context) => HorizontalList(),
+      '/lists/gridList': (context) => GridList(),
+      '/lists/mixedList': (context) => ListDifferentTypes(),
+      '/lists/dynamicHeight': (context) => DynamicHeightList(),
     },
   ));
 }
 
 class MyApp extends StatelessWidget {
   final String title;
-  final List<Header> headerList;
+  final List<Topic> topics;
 
-  MyApp({Key key, @required this.title, @required this.headerList}) : super(key: key);
+  MyApp({Key key, @required this.title, @required this.topics}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final listInfo = _getListInformation(headerList);
-    //int headerIndex = 0;
-    //int containIndex = -1;
+    final listInfo = _getListInformation(topics);
 
     return Scaffold(
         appBar: AppBar(
@@ -55,23 +56,24 @@ class MyApp extends StatelessWidget {
         body: ListView.builder(
             itemCount: listInfo.item1,
             itemBuilder: (context, index) {
-              //containIndex++;
-              final indexes = _getIndexes(listInfo.item2, index);
+              Tuple2<int, int> indexes = listInfo.item3[index];
+
+              Topic topic = topics[listInfo.item2.indexOf(indexes.item1)];
 
               if (listInfo.item2.contains(index)) {
-                //headerIndex = listInfo.item2.indexOf(index);
-                //containIndex = -1;
                 return ListTile(
                   title: Text(
-                    headerList[indexes.item1].title,
+                    topic.title,
                     style: Theme.of(context).textTheme.headline,
                   ),
                 );
               } else {
+                Content content = topic.contentList[indexes.item2];
+
                 return ListTile(
-                  title: Text(headerList[indexes.item1].contentList[indexes.item2].title),
+                  title: Text(content.title),
                   onTap: () {
-                    Navigator.pushNamed(context, headerList[indexes.item1].routeName + headerList[indexes.item1].contentList[indexes.item2].routeName);
+                    Navigator.pushNamed(context, topic.routeName + content.routeName);
                   },
                 );
               }
@@ -81,54 +83,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Tuple2<int, int> _getIndexes(List headerIndexes, int index) {
-  int iHeader = 0;
-  int iContent = 0;
-
-  if (headerIndexes.contains(index)) {
-    iHeader = headerIndexes.indexOf(index);
-  } else {
-    for (final headerIndex in headerIndexes) {
-      if (index < headerIndex) {
-        iHeader = headerIndexes.indexOf(headerIndex);
-        iContent = index - headerIndex - 1;
-
-        break;
-      }
-    }
-  }
-
-  return new Tuple2(iHeader, iContent);
-}
-
-Tuple2<int, List> _getListInformation(List<Header> headerList) {
+Tuple3<int, List, List> _getListInformation(List<Topic> topicList) {
   int counter = 0;
   List headerIndexes = new List();
+  List<Tuple2<int, int>> indexes = new List();
 
-  var stuff = {"hello": "dsd"};
-  stuff.values;
-  /*
-
-  AAA
-	a [0, 0] 1
-	b [0, 1] 2
-BBB
-	a [3, 0] 4
-	b [3, 1] 5
-	c [3, 2] 6
-
-
-[0, 3]
-   */
-
-  headerList.forEach((header) {
+  topicList.forEach((topic) {
     headerIndexes.add(counter);
+    indexes.add(Tuple2(counter, counter));
+
+    int i = 0;
+    topic.contentList.forEach((content) {
+      indexes.add(Tuple2(counter, i));
+
+      i++;
+    });
 
     counter++;
-    counter = counter + header.contentList.length;
+    counter = counter + topic.contentList.length;
   });
 
-  return new Tuple2(counter, headerIndexes);
+  return new Tuple3(counter, headerIndexes, indexes);
 }
 
 class Content {
@@ -138,12 +113,12 @@ class Content {
   Content(this.title, this.routeName);
 }
 
-class Header {
+class Topic {
   final String title;
   final List<Content> contentList;
   final String routeName;
 
-  Header(this.title, this.contentList, this.routeName);
+  Topic(this.title, this.contentList, this.routeName);
 }
 
 /*
