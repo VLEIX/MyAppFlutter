@@ -32,6 +32,9 @@ void main() {
 
   runApp(MaterialApp(
     title: 'Flutter Cookbook',
+    theme: ThemeData(
+      primarySwatch: Colors.red,
+    ),
     initialRoute: '/',
     routes: {
       '/': (context) => MyApp(title: 'Flutter Cookbook', topics: [heaAni, heaLis, heaPer],),
