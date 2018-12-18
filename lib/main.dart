@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
-import 'demo/dynamicList.dart';
-import 'cookbook/animation/fadeInOut.dart';
+import 'dart:async' show Future;
+import 'dart:convert';
+
+import 'model/topic.dart';
+import 'model/content.dart';
+import 'util/util.dart';
+import 'demo/randomWords.dart';
 import 'cookbook/lists/basic.dart';
 import 'cookbook/lists/horizontal.dart';
 import 'cookbook/lists/grid.dart';
@@ -10,25 +15,24 @@ import 'cookbook/lists/long.dart';
 import 'cookbook/lists/dynamicHeight.dart';
 import 'cookbook/navigation/newScreen.dart';
 import 'cookbook/navigation/newScreenNamedRoute.dart';
-
+import 'cookbook/navigation/sendData.dart';
 import 'cookbook/persistence/readingWritingFiles.dart';
 import 'cookbook/persistence/storingData.dart';
+import 'cookbook/animation/fadeInOut.dart';
 
-void main() {
-  final Content aniCon1 = new Content('Opacity Demo', '/fadeInOut');
-  final Topic heaAni = new Topic('Animation', [aniCon1], '/animation');
+const KEY_FILE_TOPICS = 'topics.json';
 
-  final Content lisCon1 = new Content('Basic List', '/basicList');
-  final Content lisCon2 = new Content('Long List', '/longList');
-  final Content lisCon3 = new Content('Horizontal List', '/horizontalList');
-  final Content lisCon4 = new Content('Grid List', '/gridList');
-  final Content lisCon5 = new Content('Mixed List', '/mixedList');
-  final Content lisCon6 = new Content('Dynamic Height', '/dynamicHeight');
-  final Topic heaLis = new Topic('Lists', [lisCon1, lisCon2, lisCon3, lisCon4, lisCon5, lisCon6], '/lists');
+Future<TopicList> _loadTopics() async {
+  Util util = new Util();
+  String jsonString = await util.loadStringFromFile(KEY_FILE_TOPICS);
+  final jsonResponse = json.decode(jsonString.toString());
 
-  final Content perCon1 = new Content('Reading Writing Files', '/readingWritingFiles');
-  final Content perCon2 = new Content('Storing Data', '/storingData');
-  final Topic heaPer = new Topic('Persistence', [perCon1, perCon2], '/persistence');
+  return TopicList.fromJson(jsonResponse);
+}
+
+void main() async {
+
+  final TopicList topicList = await _loadTopics();
 
   runApp(MaterialApp(
     title: 'Flutter Cookbook',
@@ -37,8 +41,8 @@ void main() {
     ),
     initialRoute: '/',
     routes: {
-      '/': (context) => MyApp(title: 'Flutter Cookbook', topics: [heaAni, heaLis, heaPer],),
-      '/animation/fadeInOut': (context) => FadeInOut(),
+      '/': (context) => MyApp(title: 'Flutter Cookbook', topics: topicList.topics),
+      '/demo/randomWordsGenerator': (context) => RandomWords(),
       '/lists/basicList': (context) => BasicList(),
       '/lists/longList': (context) => LongList(
           items: List<String>.generate(10000, (i) => 'Item $i'
@@ -53,9 +57,14 @@ void main() {
           )
       ),
       '/lists/dynamicHeight': (context) => DynamicHeightList(),
+      '/navigation/newScreen': (context) => NewScreenFirstScreen(),
+      '/navigation/newScreenNamedRoute': (context) => initialScreenWithNamedRoute(),
+      '/navigation/sendData': (context) => MasterScreen(),
 
       '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
       '/persistence/storingData': (context) => StoringData(),
+
+      '/animation/fadeInOut': (context) => FadeInOut(),
     },
   ));
 }
@@ -126,42 +135,3 @@ Tuple3<int, List, List> _getListInformation(List<Topic> topicList) {
 
   return new Tuple3(counter, headerIndexes, indexes);
 }
-
-class Content {
-  final String title;
-  final String routeName;
-
-  Content(this.title, this.routeName);
-}
-
-class Topic {
-  final String title;
-  final List<Content> contentList;
-  final String routeName;
-
-  Topic(this.title, this.contentList, this.routeName);
-}
-
-/*
-  [{
-	"headerTitle": "Animation",
-	"headerContent": [{
-		"contentTitle": "Opacity Demo"
-	}]
-}, {
-	"headerTitle": "Lists",
-	"headerContent": [{
-		"contentTitle": "Basic List"
-	}, {
-		"contentTitle": "Long List"
-	}, {
-		"contentTitle": "Horizontal List"
-	}, {
-		"contentTitle": "Grid List"
-	}, {
-		"contentTitle": "Mixed List"
-	}, {
-		"contentTitle": "Dynamic Height"
-	}]
-}]
-   */

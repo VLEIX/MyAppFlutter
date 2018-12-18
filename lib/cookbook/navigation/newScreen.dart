@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
-StatefulWidget initialScreen() {
-  return MaterialApp(
-    title: 'Navigation Basics',
-    home: FirstScreen(),
-  );
-}
-
-class FirstScreen extends StatelessWidget {
+class NewScreenFirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

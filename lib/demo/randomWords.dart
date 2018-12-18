@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-class DynamicList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Name Generator',
-      theme: new ThemeData(primaryColor: Colors.white),
-      home: RandomWords(),
-    );
-  }
-}
-
 class RandomWords extends StatefulWidget {
+  final title = 'Random Words Generator';
+
   @override
   RandomWordsState createState() => new RandomWordsState();
 }
@@ -84,12 +75,10 @@ class RandomWordsState extends State<RandomWords> {
                     );
                   }
               );
-              final List<Widget> divided = ListTile
-                  .divideTiles(
+              final List<Widget> divided = ListTile.divideTiles(
                 context: context,
                 tiles: tiles,
-              )
-                  .toList();
+              ).toList();
 
               return new Scaffold(
                 appBar: new AppBar(
@@ -109,7 +98,7 @@ class RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Name Generator'),
+        title: Text(widget.title),
         actions: <Widget>[
           new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
         ],
