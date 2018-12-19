@@ -41,11 +41,11 @@
     "contentTitle": "New Screen Named Route",
     "routeName": "/newScreenNamedRoute"
   }, {
-    "contentTitle": "Send Data",
-    "routeName": "/sendData"
+    "contentTitle": "Sending Data",
+    "routeName": "/sendingData"
   }, {
-    "contentTitle": "Return Data",
-    "routeName": "/returnData"
+    "contentTitle": "Returning Data",
+    "routeName": "/returningData"
   }, {
     "contentTitle": "Animation",
     "routeName": "/animation"

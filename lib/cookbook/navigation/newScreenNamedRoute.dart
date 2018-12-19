@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
 
-StatefulWidget initialScreenWithNamedRoute() {
-  return MaterialApp(
-    title: 'Navigation Named Route',
-    initialRoute: '/',
-    routes: {
-      '/': (context) => FirstScreen(),
-      '/second' : (context) => SecondScreen(),
-    },
-  );
-}
-
-class FirstScreen extends StatelessWidget {
+class NewScreenNamedRouteFirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +12,7 @@ class FirstScreen extends StatelessWidget {
             child: Text('LAUNCH SCREEN'),
             textColor: Colors.red,
             onPressed: () {
-              Navigator.pushNamed(context, '/second');
+              Navigator.pushNamed(context, '/navigation/newScreenNamedRoute/secondScreen');
             }
         ),
       ),
@@ -31,7 +20,7 @@ class FirstScreen extends StatelessWidget {
   }
 }
 
-class SecondScreen extends StatelessWidget {
+class NewScreenNamedRouteSecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

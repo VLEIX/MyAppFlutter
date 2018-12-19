@@ -7,27 +7,31 @@ class Todo {
   Todo(this.title, this.description);
 }
 
-class MasterScreen extends StatelessWidget {
+class SendingData extends StatelessWidget {
   final List<Todo> todoList;
 
-  MasterScreen({Key key, @required this.todoList}) : super(key: key);
+  SendingData({Key key, @required this.todoList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Master'),
+        title: Text('Send Data'),
       ),
       body: ListView.builder(
         itemCount: todoList.length,
-          itemBuilder: (context, index) {
+        itemBuilder: (context, index) {
           return ListTile(
             title: Text(todoList[index].title),
             onTap: () {
-
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DetailScreen(todo: todoList[index]))
+              );
             },
           );
-        }),
+        },
+      ),
     );
   }
 }

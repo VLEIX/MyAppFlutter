@@ -15,7 +15,8 @@ import 'cookbook/lists/long.dart';
 import 'cookbook/lists/dynamicHeight.dart';
 import 'cookbook/navigation/newScreen.dart';
 import 'cookbook/navigation/newScreenNamedRoute.dart';
-import 'cookbook/navigation/sendData.dart';
+import 'cookbook/navigation/sendingData.dart';
+import 'cookbook/navigation/returningData.dart';
 import 'cookbook/persistence/readingWritingFiles.dart';
 import 'cookbook/persistence/storingData.dart';
 import 'cookbook/animation/fadeInOut.dart';
@@ -58,13 +59,22 @@ void main() async {
       ),
       '/lists/dynamicHeight': (context) => DynamicHeightList(),
       '/navigation/newScreen': (context) => NewScreenFirstScreen(),
-      '/navigation/newScreenNamedRoute': (context) => initialScreenWithNamedRoute(),
-      '/navigation/sendData': (context) => MasterScreen(),
+      '/navigation/newScreenNamedRoute': (context) => NewScreenNamedRouteFirstScreen(),
+      '/navigation/newScreenNamedRoute/secondScreen' : (context) => NewScreenNamedRouteSecondScreen(),
+      '/navigation/sendingData': (context) => SendingData(
+        todoList: List.generate(20, (i) =>
+          Todo(
+            'Todo $i',
+            'A description of what needs to be done for Todo $i',
+          ),
+        ),
+      ),
+      '/navigation/returningData': (context) => ReturningData(),
 
       '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
       '/persistence/storingData': (context) => StoringData(),
 
-      '/animation/fadeInOut': (context) => FadeInOut(),
+      '/animation/fadeInOut': (context) => FadeInOut()
     },
   ));
 }

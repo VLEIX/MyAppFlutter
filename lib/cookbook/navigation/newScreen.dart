@@ -13,7 +13,7 @@ class NewScreenFirstScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SecondScreen()),
+              MaterialPageRoute(builder: (context) => NewScreenSecondScreen()),
             );
           }
         ),
@@ -22,7 +22,7 @@ class NewScreenFirstScreen extends StatelessWidget {
   }
 }
 
-class SecondScreen extends StatelessWidget {
+class NewScreenSecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
