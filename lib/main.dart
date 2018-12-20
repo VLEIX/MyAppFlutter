@@ -13,6 +13,7 @@ import 'cookbook/lists/grid.dart';
 import 'cookbook/lists/differentTypes.dart';
 import 'cookbook/lists/long.dart';
 import 'cookbook/lists/dynamicHeight.dart';
+import 'cookbook/forms/validation.dart';
 import 'cookbook/navigation/newScreen.dart';
 import 'cookbook/navigation/newScreenNamedRoute.dart';
 import 'cookbook/navigation/sendingData.dart';
@@ -59,6 +60,7 @@ void main() async {
           )
       ),
       '/lists/dynamicHeight': (context) => DynamicHeightList(),
+      '/forms/validation': (context) => FormValidation(),
       '/navigation/newScreen': (context) => NewScreenFirstScreen(),
       '/navigation/newScreenNamedRoute': (context) => NewScreenNamedRouteFirstScreen(),
       '/navigation/newScreenNamedRoute/secondScreen' : (context) => NewScreenNamedRouteSecondScreen(),
