@@ -17,6 +17,7 @@ import 'cookbook/navigation/newScreen.dart';
 import 'cookbook/navigation/newScreenNamedRoute.dart';
 import 'cookbook/navigation/sendingData.dart';
 import 'cookbook/navigation/returningData.dart';
+import 'cookbook/navigation/animation.dart';
 import 'cookbook/persistence/readingWritingFiles.dart';
 import 'cookbook/persistence/storingData.dart';
 import 'cookbook/animation/fadeInOut.dart';
@@ -70,6 +71,7 @@ void main() async {
         ),
       ),
       '/navigation/returningData': (context) => ReturningData(),
+      '/navigation/animation': (context) => AnimationFirstScreen(),
 
       '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
       '/persistence/storingData': (context) => StoringData(),

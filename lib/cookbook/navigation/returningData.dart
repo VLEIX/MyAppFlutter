@@ -66,7 +66,7 @@ class SelectionScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.pop(context, 'Nope');
+                  Navigator.pop(context, 'Nope.');
                 },
                 child: Text('Nope.'),
                 color: Colors.red,
