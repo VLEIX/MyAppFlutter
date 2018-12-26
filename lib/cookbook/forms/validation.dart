@@ -26,7 +26,7 @@ class _FormValidationState extends State<FormValidation> {
               children: <Widget>[
                 TextFormField(
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value.trim().isEmpty) {
                       return 'Please enter some text';
                     }
                   },

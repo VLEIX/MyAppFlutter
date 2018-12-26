@@ -33,6 +33,18 @@
   "contentList": [{
     "contentTitle": "Validation",
     "routeName": "/validation"
+  }, {
+    "contentTitle": "Focus",
+    "routeName": "/focus"
+  }, {
+    "contentTitle": "Retrieving Value",
+    "routeName": "/retrievingValue"
+  }, {
+    "contentTitle": "Handling Changes",
+    "routeName": "/handlingChanges"
+  }, {
+    "contentTitle": "Style",
+    "routeName": "/style"
   }]
 }, {
   "topicTitle": "Navigation",
