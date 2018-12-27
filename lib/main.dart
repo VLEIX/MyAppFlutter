@@ -23,6 +23,10 @@ import 'cookbook/navigation/newScreenNamedRoute.dart';
 import 'cookbook/navigation/sendingData.dart';
 import 'cookbook/navigation/returningData.dart';
 import 'cookbook/navigation/animation.dart';
+import 'cookbook/networking/fetchData.dart';
+import 'cookbook/networking/authenticatedRequests.dart';
+import 'cookbook/networking/parsingJSON.dart';
+import 'cookbook/networking/webSockets.dart';
 import 'cookbook/persistence/readingWritingFiles.dart';
 import 'cookbook/persistence/storingData.dart';
 import 'cookbook/animation/fadeInOut.dart';
@@ -67,6 +71,8 @@ void main() async {
       '/forms/validation': (context) => FormValidation(),
       '/forms/focus': (context) => FormFocus(),
       '/forms/retrievingValue': (context) => FormRetrievingValue(),
+      '/forms/handlingChanges': (context) => FormHandlingChanges(),
+      '/forms/style': (context) => FormStyle(),
       '/navigation/newScreen': (context) => NewScreenFirstScreen(),
       '/navigation/newScreenNamedRoute': (context) => NewScreenNamedRouteFirstScreen(),
       '/navigation/newScreenNamedRoute/secondScreen' : (context) => NewScreenNamedRouteSecondScreen(),
@@ -80,7 +86,10 @@ void main() async {
       ),
       '/navigation/returningData': (context) => ReturningData(),
       '/navigation/animation': (context) => AnimationFirstScreen(),
-
+      '/networking/fetchData': (context) => FetchData(),
+      '/networking/authenticatedRequests': (context) => AuthenticatedRequests(),
+      '/networking/parsingJSON': (context) => ParsingJSON(),
+      '/networking/webSockets': (context) => WebSockets(),
       '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
       '/persistence/storingData': (context) => StoringData(),
 
