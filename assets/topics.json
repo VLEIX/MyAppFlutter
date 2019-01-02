@@ -99,12 +99,33 @@
     "routeName": "/fadeInOut"
   }]
 }, {
-  "topicTitle": "Gestures",
-  "routeName": "/gestures",
-  "contentList": []
-}, {
   "topicTitle": "Design",
   "routeName": "/design",
+  "contentList": [{
+    "contentTitle": "Themes and Styles",
+    "routeName": "/themesAndStyles"
+  }, {
+    "contentTitle": "Drawer",
+    "routeName": "/drawer"
+  }, {
+    "contentTitle": "Tabs",
+    "routeName": "/tabs"
+  }, {
+    "contentTitle": "SnackBars",
+    "routeName": "/snackBars"
+  }, {
+    "contentTitle": "Custom Fonts",
+    "routeName": "/customFonts"
+  }, {
+    "contentTitle": "Fonts From Package",
+    "routeName": "/fontsFromPackage"
+  }, {
+    "contentTitle": "Updating UI Orientation",
+    "routeName": "/updatingUIOrientation"
+  }]
+}, {
+  "topicTitle": "Gestures",
+  "routeName": "/gestures",
   "contentList": []
 }, {
   "topicTitle": "Maintenance",
