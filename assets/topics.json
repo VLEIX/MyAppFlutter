@@ -75,8 +75,8 @@
     "contentTitle": "Authenticated Requests",
     "routeName": "/authenticatedRequests"
   }, {
-    "contentTitle": "Parsing JSON",
-    "routeName": "/parsingJSON"
+    "contentTitle": "Parsing JSON Background",
+    "routeName": "/parsingJSONBackground"
   }, {
     "contentTitle": "WebSockets",
     "routeName": "/webSockets"
