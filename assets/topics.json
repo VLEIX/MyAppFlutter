@@ -92,33 +92,26 @@
     "routeName": "/storingData"
   }]
 }, {
-  "topicTitle": "Animation",
-  "routeName": "/animation",
-  "contentList": [{
-    "contentTitle": "Opacity Demo",
-    "routeName": "/fadeInOut"
-  }]
-}, {
   "topicTitle": "Design",
   "routeName": "/design",
   "contentList": [{
-    "contentTitle": "Themes and Styles",
+    "contentTitle": "Themes And Styles",
     "routeName": "/themesAndStyles"
   }, {
-    "contentTitle": "Drawer",
-    "routeName": "/drawer"
+    "contentTitle": "Navigation Drawer",
+    "routeName": "/navigationDrawer"
   }, {
     "contentTitle": "Tabs",
     "routeName": "/tabs"
   }, {
-    "contentTitle": "SnackBars",
-    "routeName": "/snackBars"
+    "contentTitle": "Displaying SnackBars",
+    "routeName": "/displayingSnackBars"
   }, {
     "contentTitle": "Custom Fonts",
     "routeName": "/customFonts"
   }, {
-    "contentTitle": "Fonts From Package",
-    "routeName": "/fontsFromPackage"
+    "contentTitle": "Fonts From A Package",
+    "routeName": "/fontsFromAPackage"
   }, {
     "contentTitle": "Updating UI Orientation",
     "routeName": "/updatingUIOrientation"
@@ -127,6 +120,13 @@
   "topicTitle": "Gestures",
   "routeName": "/gestures",
   "contentList": []
+}, {
+  "topicTitle": "Animation",
+  "routeName": "/animation",
+  "contentList": [{
+    "contentTitle": "Opacity Demo",
+    "routeName": "/fadeInOut"
+  }]
 }, {
   "topicTitle": "Maintenance",
   "routeName": "/maintenance",

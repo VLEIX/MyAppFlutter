@@ -30,6 +30,12 @@ import 'cookbook/networking/parsingJSONBackground.dart';
 import 'cookbook/networking/webSockets.dart';
 import 'cookbook/persistence/readingWritingFiles.dart';
 import 'cookbook/persistence/storingData.dart';
+import 'cookbook/design/themesAndStyles.dart';
+import 'cookbook/design/navigationDrawer.dart';
+import 'cookbook/design/tabs.dart';
+import 'cookbook/design/displayingSnackBars.dart';
+import 'cookbook/design/customFonts.dart';
+
 import 'cookbook/animation/fadeInOut.dart';
 
 const KEY_FILE_TOPICS = 'topics.json';
@@ -50,6 +56,8 @@ void main() async {
     title: 'Flutter Cookbook',
     theme: ThemeData(
       primarySwatch: Colors.blueGrey,
+      accentColor: Colors.blueAccent,
+      fontFamily: 'Raleway'
     ),
     initialRoute: '/',
     routes: {
@@ -93,6 +101,11 @@ void main() async {
       '/networking/webSockets': (context) => WebSockets(),
       '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
       '/persistence/storingData': (context) => StoringData(),
+      '/design/themesAndStyles': (context) => ThemesAndStyles(),
+      '/design/navigationDrawer': (context) => NavigationDrawer(),
+      '/design/tabs': (context) => Tabs(),
+      '/design/displayingSnackBars': (context) => DisplayingSnackBars(),
+      '/design/customFonts': (context) => CustomFonts(),
 
       '/animation/fadeInOut': (context) => FadeInOut()
     },
