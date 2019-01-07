@@ -35,6 +35,7 @@ import 'cookbook/design/navigationDrawer.dart';
 import 'cookbook/design/tabs.dart';
 import 'cookbook/design/displayingSnackBars.dart';
 import 'cookbook/design/customFonts.dart';
+import 'cookbook/design/fontsFromAPackage.dart';
 
 import 'cookbook/animation/fadeInOut.dart';
 
@@ -106,6 +107,7 @@ void main() async {
       '/design/tabs': (context) => Tabs(),
       '/design/displayingSnackBars': (context) => DisplayingSnackBars(),
       '/design/customFonts': (context) => CustomFonts(),
+      '/design/fontsFromAPackage': (context) => FontsFromAPackage(),
 
       '/animation/fadeInOut': (context) => FadeInOut()
     },

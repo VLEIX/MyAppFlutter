@@ -81,6 +81,13 @@ flutter:
     - family: IndieFlower
       fonts:
         - asset: fonts/IndieFlower.ttf
+    - family: Ubuntu
+      fonts:
+        - asset: packages/my_app/fonts/Ubuntu-Regular.ttf
+        - asset: packages/my_app/fonts/Ubuntu-Italic.ttf
+          style: italic
+        - asset: packages/my_app/fonts/Ubuntu-Bold.ttf
+          weight: 300
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
