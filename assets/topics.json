@@ -119,7 +119,19 @@
 }, {
   "topicTitle": "Gestures",
   "routeName": "/gestures",
-  "contentList": []
+  "contentList": [{
+    "contentTitle": "Adding Ripples",
+    "routeName": "/addingRipples"
+  },
+    {
+      "contentTitle": "Handling Taps",
+      "routeName": "/handlingTaps"
+    },
+    {
+      "contentTitle": "Swipe To Dismiss",
+      "routeName": "/swipeToDismiss"
+    }
+  ]
 }, {
   "topicTitle": "Animation",
   "routeName": "/animation",

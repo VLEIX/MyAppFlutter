@@ -36,6 +36,10 @@ import 'cookbook/design/tabs.dart';
 import 'cookbook/design/displayingSnackBars.dart';
 import 'cookbook/design/customFonts.dart';
 import 'cookbook/design/fontsFromAPackage.dart';
+import 'cookbook/design/updatingUIOrientation.dart';
+import 'cookbook/gestures/addingRipples.dart';
+import 'cookbook/gestures/handlingTaps.dart';
+import 'cookbook/gestures/swipeToDismiss.dart';
 
 import 'cookbook/animation/fadeInOut.dart';
 
@@ -108,6 +112,10 @@ void main() async {
       '/design/displayingSnackBars': (context) => DisplayingSnackBars(),
       '/design/customFonts': (context) => CustomFonts(),
       '/design/fontsFromAPackage': (context) => FontsFromAPackage(),
+      '/design/updatingUIOrientation': (context) => UpdatingUIOrientation(),
+      '/gestures/addingRipples': (context) => AddingRipples(),
+      '/gestures/handlingTaps': (context) => HandlingTaps(),
+      '/gestures/swipeToDismiss': (context) => SwipeToDismiss(items: List<String>.generate(20, (i) => 'Item ${i + 1}')),
 
       '/animation/fadeInOut': (context) => FadeInOut()
     },
