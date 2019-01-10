@@ -1,4 +1,4 @@
-import 'dart:async' show Future;
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -40,93 +40,108 @@ import 'cookbook/design/updatingUIOrientation.dart';
 import 'cookbook/gestures/addingRipples.dart';
 import 'cookbook/gestures/handlingTaps.dart';
 import 'cookbook/gestures/swipeToDismiss.dart';
-
 import 'cookbook/animation/fadeInOut.dart';
+import 'cookbook/maintenance/reportErrorsToAService.dart';
 
 const KEY_FILE_TOPICS = 'topics.json';
 
-Future<TopicList> _loadTopics() async {
-  Util util = new Util();
-  String jsonString = await util.loadStringFromFile(KEY_FILE_TOPICS);
-  final jsonResponse = json.decode(jsonString.toString());
+Future<void> main() async {
 
-  return TopicList.fromJson(jsonResponse);
+  FlutterError.onError = (FlutterErrorDetails details) async {
+    if (isInDebugMode) {
+      FlutterError.dumpErrorToConsole(details);
+    } else {
+      Zone.current.handleUncaughtError(details.exception, details.stack);
+    }
+  };
+
+  runZoned<Future<void>>(() async {
+    runApp(MaterialMyAppFlutter(topicList: await _loadTopics()));
+  }, onError: (error, stackTrace) {
+    reportError(error, stackTrace);
+  });
 }
 
-void main() async {
+class MaterialMyAppFlutter extends StatelessWidget {
 
-  final TopicList topicList = await _loadTopics();
+  final TopicList topicList;
 
-  runApp(MaterialApp(
-    title: 'Flutter Cookbook',
-    theme: ThemeData(
-      primarySwatch: Colors.blueGrey,
-      accentColor: Colors.blueAccent,
-      fontFamily: 'Raleway'
-    ),
-    initialRoute: '/',
-    routes: {
-      '/': (context) => MyApp(title: 'Flutter Cookbook', topics: topicList.topics),
-      '/demo/randomWordsGenerator': (context) => RandomWords(),
-      '/lists/basicList': (context) => BasicList(),
-      '/lists/longList': (context) => LongList(
-          items: List<String>.generate(10000, (i) => 'Item $i'
-          )
+  MaterialMyAppFlutter({Key key, this.topicList}) : super(key : key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Cookbook',
+      theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+          accentColor: Colors.blueAccent,
+          fontFamily: 'Raleway'
       ),
-      '/lists/horizontalList': (context) => HorizontalList(),
-      '/lists/gridList': (context) => GridList(),
-      '/lists/mixedList': (context) => ListDifferentTypes(
-          items: List<ListItem>.generate(1000, (i) => i % 6 == 0
-              ? HeadingItem('Heading $i')
-              : MessageItem('Sender $i', 'Message body $i')
-          )
-      ),
-      '/lists/dynamicHeight': (context) => DynamicHeightList(),
-      '/forms/validation': (context) => FormValidation(),
-      '/forms/focus': (context) => FormFocus(),
-      '/forms/retrievingValue': (context) => FormRetrievingValue(),
-      '/forms/handlingChanges': (context) => FormHandlingChanges(),
-      '/forms/style': (context) => FormStyle(),
-      '/navigation/newScreen': (context) => NewScreenFirstScreen(),
-      '/navigation/newScreenNamedRoute': (context) => NewScreenNamedRouteFirstScreen(),
-      '/navigation/newScreenNamedRoute/secondScreen' : (context) => NewScreenNamedRouteSecondScreen(),
-      '/navigation/sendingData': (context) => SendingData(
-        todoList: List.generate(20, (i) =>
-          Todo(
-            'Todo $i',
-            'A description of what needs to be done for Todo $i',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyAppFlutter(title: 'Flutter Cookbook', topics: topicList.topics),
+        '/demo/randomWordsGenerator': (context) => RandomWords(),
+        '/lists/basicList': (context) => BasicList(),
+        '/lists/longList': (context) => LongList(
+            items: List<String>.generate(10000, (i) => 'Item $i'
+            )
+        ),
+        '/lists/horizontalList': (context) => HorizontalList(),
+        '/lists/gridList': (context) => GridList(),
+        '/lists/mixedList': (context) => ListDifferentTypes(
+            items: List<ListItem>.generate(1000, (i) => i % 6 == 0
+                ? HeadingItem('Heading $i')
+                : MessageItem('Sender $i', 'Message body $i')
+            )
+        ),
+        '/lists/dynamicHeight': (context) => DynamicHeightList(),
+        '/forms/validation': (context) => FormValidation(),
+        '/forms/focus': (context) => FormFocus(),
+        '/forms/retrievingValue': (context) => FormRetrievingValue(),
+        '/forms/handlingChanges': (context) => FormHandlingChanges(),
+        '/forms/style': (context) => FormStyle(),
+        '/navigation/newScreen': (context) => NewScreenFirstScreen(),
+        '/navigation/newScreenNamedRoute': (context) => NewScreenNamedRouteFirstScreen(),
+        '/navigation/newScreenNamedRoute/secondScreen' : (context) => NewScreenNamedRouteSecondScreen(),
+        '/navigation/sendingData': (context) => SendingData(
+          todoList: List.generate(20, (i) =>
+              Todo(
+                'Todo $i',
+                'A description of what needs to be done for Todo $i',
+              ),
           ),
         ),
-      ),
-      '/navigation/returningData': (context) => ReturningData(),
-      '/navigation/animation': (context) => AnimationFirstScreen(),
-      '/networking/fetchData': (context) => FetchData(),
-      '/networking/authenticatedRequests': (context) => AuthenticatedRequests(),
-      '/networking/parsingJSONBackground': (context) => ParsingJSONBackground(),
-      '/networking/webSockets': (context) => WebSockets(),
-      '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
-      '/persistence/storingData': (context) => StoringData(),
-      '/design/themesAndStyles': (context) => ThemesAndStyles(),
-      '/design/navigationDrawer': (context) => NavigationDrawer(),
-      '/design/tabs': (context) => Tabs(),
-      '/design/displayingSnackBars': (context) => DisplayingSnackBars(),
-      '/design/customFonts': (context) => CustomFonts(),
-      '/design/fontsFromAPackage': (context) => FontsFromAPackage(),
-      '/design/updatingUIOrientation': (context) => UpdatingUIOrientation(),
-      '/gestures/addingRipples': (context) => AddingRipples(),
-      '/gestures/handlingTaps': (context) => HandlingTaps(),
-      '/gestures/swipeToDismiss': (context) => SwipeToDismiss(items: List<String>.generate(20, (i) => 'Item ${i + 1}')),
-
-      '/animation/fadeInOut': (context) => FadeInOut()
-    },
-  ));
+        '/navigation/returningData': (context) => ReturningData(),
+        '/navigation/animation': (context) => AnimationFirstScreen(),
+        '/networking/fetchData': (context) => FetchData(),
+        '/networking/authenticatedRequests': (context) => AuthenticatedRequests(),
+        '/networking/parsingJSONBackground': (context) => ParsingJSONBackground(),
+        '/networking/webSockets': (context) => WebSockets(),
+        '/persistence/readingWritingFiles': (context) => ReadingWritingFiles(storage: CounterStorage()),
+        '/persistence/storingData': (context) => StoringData(),
+        '/design/themesAndStyles': (context) => ThemesAndStyles(),
+        '/design/navigationDrawer': (context) => NavigationDrawer(),
+        '/design/tabs': (context) => Tabs(),
+        '/design/displayingSnackBars': (context) => DisplayingSnackBars(),
+        '/design/customFonts': (context) => CustomFonts(),
+        '/design/fontsFromAPackage': (context) => FontsFromAPackage(),
+        '/design/updatingUIOrientation': (context) => UpdatingUIOrientation(),
+        '/gestures/addingRipples': (context) => AddingRipples(),
+        '/gestures/handlingTaps': (context) => HandlingTaps(),
+        '/gestures/swipeToDismiss': (context) => SwipeToDismiss(items: List<String>.generate(20, (i) => 'Item ${i + 1}')),
+        '/animation/fadeInOut': (context) => FadeInOut(),
+        '/maintenance/reportErrorsToAService': (context) => ReportErrorsToAService()
+      },
+    );
+  }
 }
 
-class MyApp extends StatelessWidget {
+
+class MyAppFlutter extends StatelessWidget {
   final String title;
   final List<Topic> topics;
 
-  MyApp({Key key, @required this.title, @required this.topics}) : super(key: key);
+  MyAppFlutter({Key key, @required this.title, @required this.topics}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -164,6 +179,15 @@ class MyApp extends StatelessWidget {
         )
     );
   }
+}
+
+// Private methods
+Future<TopicList> _loadTopics() async {
+  Util util = new Util();
+  String jsonString = await util.loadStringFromFile(KEY_FILE_TOPICS);
+  final jsonResponse = json.decode(jsonString.toString());
+
+  return TopicList.fromJson(jsonResponse);
 }
 
 Tuple3<int, List, List> _getListInformation(List<Topic> topicList) {

@@ -142,7 +142,10 @@
 }, {
   "topicTitle": "Maintenance",
   "routeName": "/maintenance",
-  "contentList": []
+  "contentList": [{
+    "contentTitle": "Report Errors To A Service",
+    "routeName": "/reportErrorsToAService"
+  }]
 }, {
   "topicTitle": "Testing Integration",
   "routeName": "/testingIntegration",
