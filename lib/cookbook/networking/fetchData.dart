@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'model/post.dart';
 
-Future<Post> fetchPost() async {
-  final response = await http.get('https://jsonplaceholder.typicode.com/posts/1');
+Future<Post> fetchPost(http.Client client) async {
+  final response = await client.get('https://jsonplaceholder.typicode.com/posts/1');
 
   if (response.statusCode == 200) {
     return Post.fromJson(json.decode(response.body));
@@ -30,7 +30,7 @@ class _FetchDataState extends State<FetchData> {
   void initState() {
     super.initState();
 
-    _post = fetchPost();
+    _post = fetchPost(http.Client());
   }
 
   @override
