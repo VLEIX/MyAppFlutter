@@ -1,6 +1,6 @@
-# my_app
+# MyAppFlutter
 
-A new Flutter project.
+Development of the topics included in the Cookbook provided by https://flutter.io/docs/cookbook
 
 ## Getting Started
 
