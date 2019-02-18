@@ -1,7 +1,6 @@
-# my_app
+# MyAppFlutter
 
-Cookbook
-https://flutter.io/docs/cookbook
+Development of the topics included in the Cookbook provided by https://flutter.io/docs/cookbook
 
 ## Getting Started
 
