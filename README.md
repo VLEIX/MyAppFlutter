@@ -1,6 +1,7 @@
 # my_app
 
-A new Flutter project.
+Cookbook
+https://flutter.io/docs/cookbook
 
 ## Getting Started
 
