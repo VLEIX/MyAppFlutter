@@ -1,27 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(CounterDemo());
-
-class CounterDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Counter App',
-      home: MyHomePage(title: 'Counter App Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class CounterApp extends StatefulWidget {
+  CounterApp({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _CounterAppState createState() => _CounterAppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CounterAppState extends State<CounterApp> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -34,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Counter App Home Page'),
       ),
       body: Center(
         child: Column(
@@ -45,9 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              // Provide a Key to this specific Text Widget. This allows us
-              // to identify this specific Widget from inside our test suite and
-              // read the text.
               key: Key('txtCounter'),
               style: Theme.of(context).textTheme.display1,
             ),
@@ -55,8 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        // Provide a Key to this the button. This allows us to find this
-        // specific button and tap it inside the test suite.
         key: Key('fabIncrement'),
         onPressed: _incrementCounter,
         tooltip: 'Increment',

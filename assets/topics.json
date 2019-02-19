@@ -176,10 +176,10 @@
     "contentTitle": "Introduction To Integration Testing",
     "routeName": "/introductionToIntegrationTesting"
   }, {
-    "contentTitle": "Performance Profiling",
-    "routeName": "/performanceProfiling"
-  }, {
     "contentTitle": "Scrolling",
     "routeName": "/scrolling"
+  }, {
+    "contentTitle": "Performance Profiling",
+    "routeName": "/performanceProfiling"
   }]
 }]

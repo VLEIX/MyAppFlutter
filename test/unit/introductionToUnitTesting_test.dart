@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:my_app/cookbook/testing/unit/counter.dart';
+import 'package:my_app/cookbook/testing/unit/counterToTest.dart';
 
 void main() {
   group('Counter', () {

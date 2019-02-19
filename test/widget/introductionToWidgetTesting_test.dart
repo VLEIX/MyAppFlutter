@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/cookbook/testing/widget/widgetDemo.dart';
+import 'package:my_app/cookbook/testing/widget/widgetDemoToTest.dart';
 
 void main() {
 
